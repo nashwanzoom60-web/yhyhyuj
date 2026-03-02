@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام حجوزات - ستوديو زوم</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="login-modal" class="modal auth-modal" style="display: flex;">
+        <div class="modal-content auth-content 3d-box">
+            <h2>تسجيل الدخول</h2>
+            <div class="input-group full-width">
+                <input type="password" id="app-password" placeholder="أدخل الرمز...">
+            </div>
+            <button class="save-btn full-width 3d-btn" onclick="checkAppLogin()">دخول</button>
+            <p id="login-error" class="error-msg hidden">الرمز غير صحيح</p>
+        </div>
+    </div>
+
+    <div id="delete-modal" class="modal auth-modal">
+        <div class="modal-content auth-content 3d-box">
+            <h2>تأكيد الإجراء</h2>
+            <div class="input-group full-width">
+                <input type="password" id="delete-password" placeholder="أدخل الرمز...">
+            </div>
+            <button class="save-btn full-width 3d-btn delete-confirm-btn" onclick="confirmDelete()">تأكيد</button>
+            <button class="save-btn full-width 3d-btn cancel-btn" onclick="closeDeleteModal()">إلغاء</button>
+            <p id="delete-error" class="error-msg hidden">الرمز غير صحيح</p>
+        </div>
+    </div>
+
+    <header class="navbar">
+        <div class="logo">ستوديو زوم</div>
+        <div class="nav-buttons">
+            <button id="btn-brides" class="nav-btn 3d-btn">أسماء العرسان</button>
+            <button id="btn-daily" class="nav-btn 3d-btn active">اليوم والتاريخ (الرئيسية)</button>
+            <button id="btn-fields" class="nav-btn 3d-btn">الحقول</button>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section id="section-brides" class="view-section hidden 3d-box">
+            <h2 class="section-title">متطلبات العرسان</h2>
+            <div class="form-grid" id="bride-form">
+                <div class="input-group">
+                    <label>أسماء العرسان</label>
+                    <input type="text" id="bride-names" placeholder="أدخل أسماء العرسان">
+                </div>
+                <div class="input-group">
+                    <label>التاريخ</label>
+                    <input type="date" id="bride-date">
+                </div>
+                <div class="input-group">
+                    <label>القاعة</label>
+                    <input type="text" id="bride-hall" placeholder="اسم القاعة">
+                </div>
+                <div class="input-group">
+                    <label>العرض</label>
+                    <input type="text" id="bride-offer" placeholder="نوع العرض">
+                </div>
+                <div class="input-group">
+                    <label>رقم الهاتف</label>
+                    <input type="tel" id="bride-phone" placeholder="07XX XXX XXXX">
+                </div>
+                <div class="input-group">
+                    <label>تاريخ طباعة الفلاش</label>
+                    <input type="date" id="bride-flash-date">
+                </div>
+                <div class="input-group">
+                    <label>طباعة الصور</label>
+                    <input type="text" id="bride-print" placeholder="تفاصيل طباعة الصور">
+                </div>
+                <div class="input-group">
+                    <label>تاريخ استلام الفلاش</label>
+                    <input type="date" id="bride-flash-receive">
+                </div>
+                <div class="input-group">
+                    <label>تاريخ استلام الصور</label>
+                    <input type="date" id="bride-print-receive">
+                </div>
+            </div>
+            <button class="save-btn 3d-btn" onclick="saveBride()">حفظ البيانات</button>
+
+            <div id="saved-brides-container" class="mt-30">
+                <h3 class="section-title">البيانات المحفوظة</h3>
+                <div class="saved-items-grid" id="brides-list">
+                    </div>
+            </div>
+        </section>
+
+        <section id="section-daily" class="view-section 3d-box">
+            <div class="date-header">
+                <h2 class="section-title">حجوزات اليوم</h2>
+                <input type="date" id="current-date-picker" class="date-picker 3d-btn">
+            </div>
+            
+            <div class="bookings-grid">
+                <div class="booking-card 3d-box" id="card-1" onclick="openBookingModal(1)">
+                    <h3>حجز 1</h3>
+                    <p>اضغط لإضافة/عرض التفاصيل</p>
+                </div>
+                <div class="booking-card 3d-box" id="card-2" onclick="openBookingModal(2)">
+                    <h3>حجز 2</h3>
+                    <p>اضغط لإضافة/عرض التفاصيل</p>
+                </div>
+                <div class="booking-card 3d-box" id="card-3" onclick="openBookingModal(3)">
+                    <h3>حجز 3</h3>
+                    <p>اضغط لإضافة/عرض التفاصيل</p>
+                </div>
+                <div class="booking-card 3d-box" id="card-4" onclick="openBookingModal(4)">
+                    <h3>حجز 4</h3>
+                    <p>اضغط لإضافة/عرض التفاصيل</p>
+                </div>
+                <div class="booking-card 3d-box" id="card-5" onclick="openBookingModal(5)">
+                    <h3>حجز 5</h3>
+                    <p>اضغط لإضافة/عرض التفاصيل</p>
+                </div>
+                <div class="booking-card 3d-box" id="card-6" onclick="openBookingModal(6)">
+                    <h3>حجز 6</h3>
+                    <p>اضغط لإضافة/عرض التفاصيل</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-fields" class="view-section hidden 3d-box">
+            <h2 class="section-title">إدارة العروض</h2>
+            <div class="form-grid">
+                <div class="input-group full-width">
+                    <label>إضافة عرض جديد</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="new-offer-input" placeholder="اكتب اسم العرض هنا..." style="flex: 1;">
+                        <button class="save-btn 3d-btn" style="margin-top: 0;" onclick="addNewOffer()">إضافة</button>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-30">
+                <h3 class="section-title">العروض الحالية</h3>
+                <div class="saved-items-grid" id="offers-list">
+                    </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="booking-modal" class="modal">
+        <div class="modal-content 3d-box">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title">تفاصيل الحجز</h2>
+            
+            <div class="modal-form">
+                <input type="hidden" id="booking-id">
+                <div class="input-group full-width">
+                    <label>أسماء العرسان</label>
+                    <input type="text" id="book-names" placeholder="الاسم الكامل">
+                </div>
+                <div class="input-group">
+                    <label>اسم القاعة</label>
+                    <input type="text" id="book-hall" placeholder="اسم قاعة المناسبة">
+                </div>
+                <div class="input-group">
+                    <label>رقم الهاتف</label>
+                    <input type="tel" id="book-phone" placeholder="رقم الموبايل">
+                </div>
+                <div class="input-group full-width">
+                    <label>نوع العرض</label>
+                    <select id="offer-type">
+                        </select>
+                </div>
+                <div class="input-group">
+                    <label>المبلغ الكلي</label>
+                    <input type="number" id="total-amount" placeholder="0" oninput="calculateRemaining()">
+                </div>
+                <div class="input-group">
+                    <label>الواصل</label>
+                    <input type="number" id="paid-amount" placeholder="0" oninput="calculateRemaining()">
+                </div>
+                <div class="input-group full-width">
+                    <label>الباقي</label>
+                    <input type="number" id="remaining-amount" placeholder="0" readonly class="readonly-input">
+                </div>
+                <div class="input-group full-width">
+                    <label>الملاحظات</label>
+                    <textarea id="book-notes" rows="3" placeholder="أضف أي ملاحظات هنا..."></textarea>
+                </div>
+                
+                <div class="action-buttons full-width" style="display: flex; gap: 10px; grid-column: 1 / -1;">
+                    <button class="save-btn full-width 3d-btn" id="save-booking-btn" onclick="saveBooking()">حفظ الحجز</button>
+                    <button class="save-btn full-width 3d-btn cancel-btn hidden" id="reset-booking-btn" onclick="requestDeleteBooking()">حذف / تهيئة</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
