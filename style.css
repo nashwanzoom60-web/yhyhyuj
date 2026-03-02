@@ -1,0 +1,405 @@
+/* الإعدادات الأساسية */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Tajawal', sans-serif;
+}
+
+body {
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+/* التأثيرات ثلاثية الأبعاد */
+.3d-btn {
+    box-shadow: 0 5px 0 #a0a0a0;
+    transition: all 0.1s ease;
+}
+
+.3d-btn:active {
+    transform: translateY(5px);
+    box-shadow: 0 0 0 #a0a0a0;
+}
+
+.3d-box {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1), 0 6px 6px rgba(0,0,0,0.1);
+    border: 1px solid #e0e0e0;
+}
+
+/* شريط التنقل */
+.navbar {
+    background-color: #ffffff;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #2e7d32;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2e7d32;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-btn {
+    background-color: #e0e0e0;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 5px 0 #bdc3c7;
+}
+
+.nav-btn:hover {
+    background-color: #d5d5d5;
+}
+
+.nav-btn.active {
+    background-color: #2e7d32;
+    color: white;
+    box-shadow: 0 5px 0 #1b5e20;
+}
+
+.nav-btn.active:active {
+    box-shadow: 0 0 0 #1b5e20;
+}
+
+/* الحاوية الرئيسية */
+.container {
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.view-section {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    animation: fadeIn3D 0.5s ease-out forwards;
+    transform-origin: top center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.section-title {
+    margin-bottom: 25px;
+    color: #2c3e50;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+/* تصميم النماذج والحقول */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.input-group label {
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+}
+
+.input-group input, 
+.input-group select, 
+.input-group textarea {
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.input-group input:focus, 
+.input-group select:focus, 
+.input-group textarea:focus {
+    outline: none;
+    border-color: #2e7d32;
+    box-shadow: inset 0 2px 4px rgba(46,125,50,0.1), 0 0 8px rgba(46,125,50,0.2);
+}
+
+.readonly-input {
+    background-color: #f9f9f9;
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+.save-btn {
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 25px;
+    box-shadow: 0 5px 0 #1b5e20;
+}
+
+.save-btn:hover {
+    background-color: #276b2a;
+}
+
+.save-btn.full-width {
+    width: 100%;
+}
+
+.cancel-btn {
+    background-color: #e74c3c;
+    box-shadow: 0 5px 0 #c0392b;
+}
+.cancel-btn:hover {
+    background-color: #d62c1a;
+}
+.cancel-btn.active:active {
+    box-shadow: 0 0 0 #c0392b;
+}
+
+.delete-confirm-btn {
+    background-color: #e74c3c;
+    box-shadow: 0 5px 0 #c0392b;
+    margin-top: 15px;
+}
+.delete-confirm-btn:hover {
+    background-color: #d62c1a;
+}
+
+.error-msg {
+    color: #e74c3c;
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+    animation: shake 0.3s;
+}
+
+/* قسم حجوزات اليوم */
+.date-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.date-picker {
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #ccc;
+    font-size: 16px;
+}
+
+.bookings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.booking-card {
+    background-color: #fafafa;
+    border: 2px dashed #bdc3c7;
+    border-radius: 12px;
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.booking-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.1);
+    border-color: #2e7d32;
+}
+
+.booking-card h3 {
+    color: #2e7d32;
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+.booking-card p {
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+/* حالة البطاقة المحجوزة (أحمر) */
+.booking-card.booked {
+    background: linear-gradient(145deg, #ff4b4b, #d32f2f);
+    border: none;
+    color: white;
+}
+.booking-card.booked h3, .booking-card.booked p {
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+.booking-card.booked:hover {
+    border-color: transparent;
+}
+
+/* القوائم المحفوظة (عرسان + عروض) */
+.saved-items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+}
+
+.saved-card {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    position: relative;
+    border-right: 4px solid #2e7d32;
+}
+
+.saved-card h4 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.saved-card p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.card-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.small-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+.edit-btn { background-color: #3498db; box-shadow: 0 3px 0 #2980b9;}
+.edit-btn:active { box-shadow: 0 0 0 #2980b9; transform: translateY(3px);}
+.del-btn { background-color: #e74c3c; box-shadow: 0 3px 0 #c0392b;}
+.del-btn:active { box-shadow: 0 0 0 #c0392b; transform: translateY(3px);}
+
+/* النافذة المنبثقة (Modal) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.auth-content {
+    max-width: 400px;
+    text-align: center;
+}
+
+.auth-content h2 {
+    margin-bottom: 20px;
+    color: #2e7d32;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-modal:hover {
+    color: #d32f2f;
+}
+
+.modal-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* حركات تنقل */
+@keyframes fadeIn3D {
+    from { opacity: 0; transform: perspective(1000px) rotateX(-10deg) translateY(20px); }
+    to { opacity: 1; transform: perspective(1000px) rotateX(0) translateY(0); }
+}
+
+@keyframes popIn {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+/* التجاوب مع الشاشات الصغيرة */
+@media (max-width: 768px) {
+    .bookings-grid {
+        grid-template-columns: 1fr;
+    }
+    .modal-form {
+        grid-template-columns: 1fr;
+    }
+    .nav-buttons {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 15px;
+    }
+    .navbar {
+        flex-direction: column;
+    }
+}
