@@ -63,24 +63,10 @@ body {
     margin-bottom: 60px;
 }
 
-.logo-box {
-    border-top: 8px solid #fff;
-    border-bottom: 8px solid #fff;
-    padding: 10px 0;
-    display: inline-block;
-    margin-bottom: 10px;
-}
-
-.logo-z5 {
-    font-size: 120px;
-    font-weight: 900;
-    line-height: 0.8;
-    letter-spacing: -5px;
-}
-
-.logo-z5 .five {
-    position: relative;
-    top: -20px;
+.logo-img-large {
+    width: 180px;
+    height: auto;
+    margin-bottom: 15px;
 }
 
 .logo-text {
@@ -219,19 +205,10 @@ body {
     text-align: center;
 }
 
-.logo-box-black {
-    border-top: 5px solid #000;
-    border-bottom: 5px solid #000;
-    display: inline-block;
-    padding: 5px 0;
+.logo-img-small {
+    width: 120px;
+    height: auto;
     margin-bottom: 15px;
-}
-
-.logo-z5-small {
-    font-size: 60px;
-    font-weight: 900;
-    line-height: 0.8;
-    color: #000;
 }
 
 .menu-slogan {
