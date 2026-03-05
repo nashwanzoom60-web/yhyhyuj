@@ -32,14 +32,13 @@ body {
     display: flex !important;
 }
 
-/* الصفحة الرئيسية (خلفية سوداء) */
+/* الصفحة الرئيسية */
 .bg-black {
     background-color: #000;
     color: #fff;
     justify-content: center;
 }
 
-/* أيقونة القائمة (الهامبرغر) */
 .hamburger {
     position: absolute;
     top: 20px;
@@ -57,7 +56,6 @@ body {
     background-color: #fff;
 }
 
-/* الشعار في الرئيسية */
 .logo-container {
     text-align: center;
     margin-bottom: 60px;
@@ -81,7 +79,6 @@ body {
     margin-top: 5px;
 }
 
-/* أزرار الرئيسية (منقطة) */
 .home-buttons {
     display: flex;
     flex-direction: column;
@@ -103,13 +100,14 @@ body {
     cursor: pointer;
 }
 
-/* الصفحات الداخلية (خلفية بيضاء مع علامة مائية) */
+/* الصفحات الداخلية */
 .bg-white {
     background-color: #fff;
     justify-content: flex-start;
     padding-top: 60px;
     position: relative;
     overflow: hidden;
+    padding-bottom: 50px;
 }
 
 .bg-white::before {
@@ -125,7 +123,6 @@ body {
     pointer-events: none;
 }
 
-/* الحقول والأزرار في الصفحات الداخلية */
 .form-container {
     display: flex;
     flex-direction: column;
@@ -164,7 +161,7 @@ body {
     background-color: #fff;
 }
 
-/* القائمة الجانبية (شاشة الفرز/تعديلات) */
+/* القائمة الجانبية */
 #side-menu {
     position: fixed;
     top: 0;
@@ -228,4 +225,33 @@ body {
 
 .menu-buttons .btn-rounded {
     cursor: pointer;
+}
+
+/* تأثيرات حقول علامة الصح */
+.status-toggle {
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.status-toggle span {
+    position: absolute;
+    left: 20px;
+    font-size: 24px;
+    color: #27ae60;
+    display: none;
+}
+
+.status-toggle.checked {
+    border-color: #27ae60;
+    color: #27ae60;
+    background-color: #f0fdf4;
+}
+
+.status-toggle.checked span {
+    display: block;
 }
