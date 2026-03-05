@@ -12,7 +12,7 @@
     <div id="menu-overlay" onclick="closeMenu()"></div>
     <div id="side-menu">
         <div class="menu-header">
-            <img src="https://j.top4top.io/p_3716gls5g1.jpg" class="logo-img-small" alt="Zoom Studio Logo">
+            <img src="https://h.top4top.io/p_3716aa7rc1.jpg" class="logo-img-small" alt="Zoom Studio Logo">
             <h2 class="menu-slogan">ZOOM STUDIO<br>#اختيارك_الأفضل</h2>
         </div>
         <div class="menu-buttons">
@@ -33,7 +33,7 @@
         </div>
         
         <div class="logo-container">
-            <img src="https://j.top4top.io/p_3716gls5g1.jpg" class="logo-img-large" alt="Zoom Studio Logo">
+            <img src="https://h.top4top.io/p_3716aa7rc1.jpg" class="logo-img-large" alt="Zoom Studio Logo">
             <h1 class="logo-text">ZOOM STUDIO</h1>
             <p class="slogan">#اختيارك_الأفضل</p>
         </div>
@@ -48,26 +48,28 @@
     <div id="page-new-booking" class="page hidden bg-white">
         <div class="form-container">
             <button class="btn-rounded title-btn">الحجز</button>
-            <input type="text" placeholder="اسماء العرسان" class="input-rounded text-center">
-            <input type="text" placeholder="التاريخ" class="input-rounded text-center">
-            <input type="text" placeholder="نوع العرض" class="input-rounded text-center">
-            <input type="text" placeholder="المبلغ الكلي" class="input-rounded text-center">
-            <input type="text" placeholder="الواصل" class="input-rounded text-center">
-            <input type="text" placeholder="الباقي" class="input-rounded text-center">
-            <input type="text" placeholder="الملاحظات" class="input-rounded text-center">
+            <input type="text" id="new-name" placeholder="اسماء العرسان" class="input-rounded text-center">
+            <input type="text" id="new-date" placeholder="التاريخ" class="input-rounded text-center">
+            <input type="text" id="new-offer" placeholder="نوع العرض" class="input-rounded text-center">
+            <input type="text" id="new-total" placeholder="المبلغ الكلي" class="input-rounded text-center">
+            <input type="text" id="new-paid" placeholder="الواصل" class="input-rounded text-center">
+            <input type="text" id="new-rest" placeholder="الباقي" class="input-rounded text-center">
+            <input type="text" id="new-notes" placeholder="الملاحظات" class="input-rounded text-center">
+            <button class="btn-rounded" style="background-color: #000; color: #fff; margin-top: 10px;" onclick="saveNewBooking()">حفظ الحجز</button>
         </div>
     </div>
 
     <div id="page-search-booking" class="page hidden bg-white">
         <div class="form-container">
             <button class="btn-rounded title-btn">البحث عن حجز</button>
-            <input type="text" placeholder="اسماء العرسان" class="input-rounded text-center">
-            <input type="text" placeholder="التاريخ" class="input-rounded text-center">
-            <input type="text" placeholder="نوع العرض" class="input-rounded text-center">
-            <input type="text" placeholder="طباعة فلاش" class="input-rounded text-center">
-            <input type="text" placeholder="تسليم الفلاش" class="input-rounded text-center">
-            <input type="text" placeholder="استلام الصور" class="input-rounded text-center">
-            <input type="text" placeholder="طباعة الصور" class="input-rounded text-center">
+            <input type="text" id="search-name" placeholder="اسماء العرسان (للبحث)" class="input-rounded text-center" oninput="findBooking()">
+            <input type="text" id="search-date" placeholder="التاريخ" class="input-rounded text-center" readonly>
+            <input type="text" id="search-offer" placeholder="نوع العرض" class="input-rounded text-center" readonly>
+            
+            <div id="toggle-print-flash" class="input-rounded text-center status-toggle" onclick="toggleCheck('print-flash')">طباعة فلاش <span></span></div>
+            <div id="toggle-receive-flash" class="input-rounded text-center status-toggle" onclick="toggleCheck('receive-flash')">تسليم الفلاش <span></span></div>
+            <div id="toggle-receive-photos" class="input-rounded text-center status-toggle" onclick="toggleCheck('receive-photos')">استلام الصور <span></span></div>
+            <div id="toggle-print-photos" class="input-rounded text-center status-toggle" onclick="toggleCheck('print-photos')">طباعة الصور <span></span></div>
         </div>
     </div>
 
