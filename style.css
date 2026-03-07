@@ -288,7 +288,7 @@ body {
 }
 
 .booking-box {
-    border: 3px dashed #000;
+    border: 3px solid #000;
     border-radius: 0;
     padding: 40px 10px;
     text-align: center;
@@ -297,4 +297,10 @@ body {
     cursor: pointer;
     background-color: #fff;
     color: #000;
+}
+
+.booking-box.booked {
+    background-color: #27ae60;
+    color: #fff;
+    border-color: #27ae60;
 }
