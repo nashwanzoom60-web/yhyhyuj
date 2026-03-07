@@ -33,8 +33,11 @@ function closeMenu() {
     document.getElementById('menu-overlay').classList.remove('active');
 }
 
-// تحديث واجهة الخانات الـ 6
+// تحديث واجهة الخانات الـ 6 بناءً على التاريخ
 function updateBoxesUI() {
+    let filterDateInput = document.getElementById('filter-date');
+    let filterDate = filterDateInput ? filterDateInput.value : '';
+
     for (let i = 1; i <= 6; i++) {
         let el = document.getElementById('box-' + i);
         if (el) {
@@ -43,13 +46,15 @@ function updateBoxesUI() {
         }
     }
     
+    if (!filterDate) return;
+
     for (let name in bookingsData) {
         let b = bookingsData[name];
-        if (b.boxNum >= 1 && b.boxNum <= 6) {
+        if (b.boxNum >= 1 && b.boxNum <= 6 && b.date === filterDate) {
             let el = document.getElementById('box-' + b.boxNum);
             if (el) {
                 el.classList.add('booked');
-                el.innerHTML = 'الحجز ' + b.boxNum + '<br><span style="font-size: 18px;">' + (b.date || '') + '</span>';
+                el.innerHTML = 'الحجز ' + b.boxNum + '<br><span style="font-size: 18px;">' + name + '</span>';
             }
         }
     }
@@ -57,8 +62,14 @@ function updateBoxesUI() {
 
 // فتح استمارة الحجز من الخانات الـ 6
 function openBookingBox(boxNum) {
+    let filterDate = document.getElementById('filter-date').value;
+    if (!filterDate) {
+        alert("يرجى اختيار التاريخ أولاً");
+        return;
+    }
+
     currentBoxNum = boxNum;
-    let existingBookingName = Object.keys(bookingsData).find(name => bookingsData[name].boxNum === boxNum);
+    let existingBookingName = Object.keys(bookingsData).find(name => bookingsData[name].boxNum === boxNum && bookingsData[name].date === filterDate);
     
     if (existingBookingName) {
         let b = bookingsData[existingBookingName];
@@ -72,7 +83,7 @@ function openBookingBox(boxNum) {
         document.getElementById('new-photographer').value = b.photographer || '';
     } else {
         document.getElementById('new-name').value = '';
-        document.getElementById('new-date').value = '';
+        document.getElementById('new-date').value = filterDate;
         document.getElementById('new-offer').value = '';
         document.getElementById('new-total').value = '';
         document.getElementById('new-paid').value = '';
