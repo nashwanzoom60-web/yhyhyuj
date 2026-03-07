@@ -46,7 +46,7 @@
 
     <div id="page-six-bookings" class="page hidden bg-white">
         <div class="form-container">
-            <button class="btn-rounded title-btn">التاريخ</button>
+            <input type="text" id="filter-date" placeholder="التاريخ" class="input-rounded text-center" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'" onchange="updateBoxesUI()">
             <div class="boxes-grid">
                 <div class="booking-box" id="box-1" onclick="openBookingBox(1)">الحجز 1</div>
                 <div class="booking-box" id="box-2" onclick="openBookingBox(2)">الحجز 2</div>
