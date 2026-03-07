@@ -3,7 +3,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Tajawal', sans-serif;
+    font-family: 'Cairo', sans-serif;
 }
 
 body {
@@ -73,6 +73,14 @@ body {
     letter-spacing: 2px;
 }
 
+.app-title-oval {
+    border: 3px solid #fff;
+    border-radius: 50px;
+    padding: 10px 40px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
 .slogan {
     font-size: 26px;
     font-weight: bold;
@@ -106,13 +114,13 @@ body {
     justify-content: flex-start;
     padding-top: 60px;
     position: relative;
-    overflow: hidden;
+    overflow: auto;
     padding-bottom: 50px;
 }
 
 .bg-white::before {
     content: "Z5";
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -126,11 +134,12 @@ body {
 .form-container {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
     width: 85%;
     max-width: 350px;
     margin: 0 auto;
     z-index: 10;
+    padding-bottom: 30px;
 }
 
 .input-rounded, .btn-rounded {
@@ -139,10 +148,14 @@ body {
     border: 3px solid #000;
     border-radius: 40px;
     padding: 12px 20px;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 900;
     color: #000;
     outline: none;
+    cursor: pointer;
+}
+
+.input-rounded {
     cursor: text;
 }
 
@@ -223,10 +236,6 @@ body {
     align-items: center;
 }
 
-.menu-buttons .btn-rounded {
-    cursor: pointer;
-}
-
 /* تأثيرات حقول علامة الصح */
 .status-toggle {
     cursor: pointer;
@@ -254,4 +263,26 @@ body {
 
 .status-toggle.checked span {
     display: block;
+}
+
+/* قائمة الحجوزات */
+#bookings-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.booking-card {
+    border: 3px solid #000;
+    border-radius: 20px;
+    padding: 15px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.booking-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
 }
