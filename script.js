@@ -35,6 +35,17 @@ function saveNewBooking() {
         return;
     }
     
+    let existingStatuses = {
+        'print-flash': false,
+        'receive-flash': false,
+        'receive-photos': false,
+        'print-photos': false
+    };
+
+    if (bookingsData[name] && bookingsData[name].statuses) {
+        existingStatuses = bookingsData[name].statuses;
+    }
+
     bookingsData[name] = {
         date: document.getElementById('new-date').value,
         offer: document.getElementById('new-offer').value,
@@ -42,12 +53,8 @@ function saveNewBooking() {
         paid: document.getElementById('new-paid').value,
         rest: document.getElementById('new-rest').value,
         notes: document.getElementById('new-notes').value,
-        statuses: {
-            'print-flash': false,
-            'receive-flash': false,
-            'receive-photos': false,
-            'print-photos': false
-        }
+        photographer: document.getElementById('new-photographer').value,
+        statuses: existingStatuses
     };
     
     localStorage.setItem('zoomBookings', JSON.stringify(bookingsData));
@@ -60,6 +67,7 @@ function saveNewBooking() {
     document.getElementById('new-paid').value = '';
     document.getElementById('new-rest').value = '';
     document.getElementById('new-notes').value = '';
+    document.getElementById('new-photographer').value = '';
 }
 
 // البحث عن حجز
@@ -109,5 +117,62 @@ function updateToggleUI(statusKey, isChecked) {
     } else {
         el.classList.remove('checked');
         el.querySelector('span').innerText = '';
+    }
+}
+
+// عرض قائمة الحجوزات
+function showBookingsList() {
+    showPage('page-bookings-list');
+    renderBookings();
+}
+
+// رسم قائمة الحجوزات
+function renderBookings() {
+    const container = document.getElementById('bookings-list-container');
+    container.innerHTML = '';
+    
+    let hasBookings = false;
+    for (let name in bookingsData) {
+        hasBookings = true;
+        let b = bookingsData[name];
+        let div = document.createElement('div');
+        div.className = 'booking-card';
+        div.innerHTML = `
+            <h3 style="margin-bottom: 5px;">${name}</h3>
+            <p style="margin-bottom: 10px; font-weight: bold;">التاريخ: ${b.date || 'غير محدد'}</p>
+            <div class="booking-actions">
+                <button class="btn-rounded" style="padding: 5px; font-size: 16px; border-width: 2px;" onclick="editBooking('${name}')">تعديل</button>
+                <button class="btn-rounded" style="padding: 5px; font-size: 16px; border-width: 2px; background-color: #000; color: #fff;" onclick="deleteBooking('${name}')">حذف</button>
+            </div>
+        `;
+        container.appendChild(div);
+    }
+
+    if (!hasBookings) {
+        container.innerHTML = '<p class="text-center" style="font-weight: bold; font-size: 18px;">لا توجد حجوزات مسجلة.</p>';
+    }
+}
+
+// تعديل حجز
+function editBooking(name) {
+    let b = bookingsData[name];
+    document.getElementById('new-name').value = name;
+    document.getElementById('new-date').value = b.date || '';
+    document.getElementById('new-offer').value = b.offer || '';
+    document.getElementById('new-total').value = b.total || '';
+    document.getElementById('new-paid').value = b.paid || '';
+    document.getElementById('new-rest').value = b.rest || '';
+    document.getElementById('new-notes').value = b.notes || '';
+    document.getElementById('new-photographer').value = b.photographer || '';
+    
+    showPage('page-new-booking');
+}
+
+// حذف حجز
+function deleteBooking(name) {
+    if (confirm('هل أنت متأكد من حذف هذا الحجز؟')) {
+        delete bookingsData[name];
+        localStorage.setItem('zoomBookings', JSON.stringify(bookingsData));
+        renderBookings();
     }
 }
