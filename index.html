@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ستوديو زوم - ZOOM STUDIO</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -17,7 +17,7 @@
         </div>
         <div class="menu-buttons">
             <button class="btn-rounded" onclick="showPage('page-home')">الرئيسية</button>
-            <button class="btn-rounded" onclick="showBookingsList()">حجز جديد</button>
+            <button class="btn-rounded" onclick="showPage('page-six-bookings')">حجز جديد</button>
             <button class="btn-rounded">الفرز</button>
             <button class="btn-rounded">تعديلات</button>
             <button class="btn-rounded">الحسابات</button>
@@ -34,7 +34,6 @@
         
         <div class="logo-container">
             <img src="https://j.top4top.io/p_3716gls5g1.jpg" class="logo-img-large" alt="Zoom Studio Logo">
-            <h1 class="logo-text app-title-oval">ZOOM STUDIO</h1>
             <p class="slogan">#اختيارك_الأفضل</p>
         </div>
 
@@ -45,11 +44,26 @@
         </div>
     </div>
 
+    <div id="page-six-bookings" class="page hidden bg-white">
+        <div class="form-container">
+            <button class="btn-rounded title-btn">التاريخ</button>
+            <div class="boxes-grid">
+                <div class="booking-box" onclick="openBookingBox(1)">الحجز 1</div>
+                <div class="booking-box" onclick="openBookingBox(2)">الحجز 2</div>
+                <div class="booking-box" onclick="openBookingBox(3)">الحجز 3</div>
+                <div class="booking-box" onclick="openBookingBox(4)">الحجز 4</div>
+                <div class="booking-box" onclick="openBookingBox(5)">الحجز 5</div>
+                <div class="booking-box" onclick="openBookingBox(6)">الحجز 6</div>
+            </div>
+            <button class="btn-rounded" onclick="showPage('page-home')" style="margin-top: 10px;">رجوع</button>
+        </div>
+    </div>
+
     <div id="page-new-booking" class="page hidden bg-white">
         <div class="form-container">
             <button class="btn-rounded title-btn">الحجز</button>
             <input type="text" id="new-name" placeholder="اسماء العرسان" class="input-rounded text-center">
-            <input type="text" id="new-date" placeholder="التاريخ" class="input-rounded text-center">
+            <input type="date" id="new-date" placeholder="التاريخ" class="input-rounded text-center">
             <input type="text" id="new-offer" placeholder="نوع العرض" class="input-rounded text-center">
             <input type="text" id="new-total" placeholder="المبلغ الكلي" class="input-rounded text-center">
             <input type="text" id="new-paid" placeholder="الواصل" class="input-rounded text-center">
