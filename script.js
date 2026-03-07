@@ -1,6 +1,7 @@
 // بيانات الحجوزات
 let bookingsData = JSON.parse(localStorage.getItem('zoomBookings')) || {};
 let currentSearchName = "";
+let currentBoxNum = null;
 
 // التنقل بين الصفحات
 function showPage(pageId) {
@@ -14,6 +15,11 @@ function showPage(pageId) {
         target.classList.remove('hidden');
         target.classList.add('active');
     }
+    
+    if (pageId === 'page-six-bookings') {
+        updateBoxesUI();
+    }
+    
     closeMenu();
 }
 
@@ -27,16 +33,53 @@ function closeMenu() {
     document.getElementById('menu-overlay').classList.remove('active');
 }
 
+// تحديث واجهة الخانات الـ 6
+function updateBoxesUI() {
+    for (let i = 1; i <= 6; i++) {
+        let el = document.getElementById('box-' + i);
+        if (el) {
+            el.className = 'booking-box';
+            el.innerHTML = 'الحجز ' + i;
+        }
+    }
+    
+    for (let name in bookingsData) {
+        let b = bookingsData[name];
+        if (b.boxNum >= 1 && b.boxNum <= 6) {
+            let el = document.getElementById('box-' + b.boxNum);
+            if (el) {
+                el.classList.add('booked');
+                el.innerHTML = 'الحجز ' + b.boxNum + '<br><span style="font-size: 18px;">' + (b.date || '') + '</span>';
+            }
+        }
+    }
+}
+
 // فتح استمارة الحجز من الخانات الـ 6
 function openBookingBox(boxNum) {
-    document.getElementById('new-name').value = '';
-    document.getElementById('new-date').value = '';
-    document.getElementById('new-offer').value = '';
-    document.getElementById('new-total').value = '';
-    document.getElementById('new-paid').value = '';
-    document.getElementById('new-rest').value = '';
-    document.getElementById('new-notes').value = '';
-    document.getElementById('new-photographer').value = '';
+    currentBoxNum = boxNum;
+    let existingBookingName = Object.keys(bookingsData).find(name => bookingsData[name].boxNum === boxNum);
+    
+    if (existingBookingName) {
+        let b = bookingsData[existingBookingName];
+        document.getElementById('new-name').value = existingBookingName;
+        document.getElementById('new-date').value = b.date || '';
+        document.getElementById('new-offer').value = b.offer || '';
+        document.getElementById('new-total').value = b.total || '';
+        document.getElementById('new-paid').value = b.paid || '';
+        document.getElementById('new-rest').value = b.rest || '';
+        document.getElementById('new-notes').value = b.notes || '';
+        document.getElementById('new-photographer').value = b.photographer || '';
+    } else {
+        document.getElementById('new-name').value = '';
+        document.getElementById('new-date').value = '';
+        document.getElementById('new-offer').value = '';
+        document.getElementById('new-total').value = '';
+        document.getElementById('new-paid').value = '';
+        document.getElementById('new-rest').value = '';
+        document.getElementById('new-notes').value = '';
+        document.getElementById('new-photographer').value = '';
+    }
     showPage('page-new-booking');
 }
 
@@ -60,6 +103,7 @@ function saveNewBooking() {
     }
 
     bookingsData[name] = {
+        boxNum: currentBoxNum,
         date: document.getElementById('new-date').value,
         offer: document.getElementById('new-offer').value,
         total: document.getElementById('new-total').value,
@@ -72,6 +116,8 @@ function saveNewBooking() {
     
     localStorage.setItem('zoomBookings', JSON.stringify(bookingsData));
     alert("تم حفظ الحجز بنجاح");
+    
+    updateBoxesUI();
     
     document.getElementById('new-name').value = '';
     document.getElementById('new-date').value = '';
@@ -169,6 +215,7 @@ function renderBookings() {
 // تعديل حجز
 function editBooking(name) {
     let b = bookingsData[name];
+    currentBoxNum = b.boxNum || null;
     document.getElementById('new-name').value = name;
     document.getElementById('new-date').value = b.date || '';
     document.getElementById('new-offer').value = b.offer || '';
@@ -187,5 +234,6 @@ function deleteBooking(name) {
         delete bookingsData[name];
         localStorage.setItem('zoomBookings', JSON.stringify(bookingsData));
         renderBookings();
+        updateBoxesUI();
     }
 }
