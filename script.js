@@ -27,6 +27,19 @@ function closeMenu() {
     document.getElementById('menu-overlay').classList.remove('active');
 }
 
+// فتح استمارة الحجز من الخانات الـ 6
+function openBookingBox(boxNum) {
+    document.getElementById('new-name').value = '';
+    document.getElementById('new-date').value = '';
+    document.getElementById('new-offer').value = '';
+    document.getElementById('new-total').value = '';
+    document.getElementById('new-paid').value = '';
+    document.getElementById('new-rest').value = '';
+    document.getElementById('new-notes').value = '';
+    document.getElementById('new-photographer').value = '';
+    showPage('page-new-booking');
+}
+
 // حفظ حجز جديد
 function saveNewBooking() {
     let name = document.getElementById('new-name').value.trim();
